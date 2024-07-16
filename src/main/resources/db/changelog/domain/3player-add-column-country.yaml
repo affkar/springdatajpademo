@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id:  "3"
+      author:  other.dev
+      labels: example-label
+      context: example-context
+      comment: example-comment
+      changes:
+       - addColumn:
+            tableName:  player
+            columns:
+              - column:
+                  name:  country
+                  type:  varchar(2)

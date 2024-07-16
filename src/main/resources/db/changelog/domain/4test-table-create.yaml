@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - changeSet:
+      id: "4"
+      author: Karthick
+      context: example-context
+      labels: example-label
+      changes:
+       - createTable:
+          tableName: test_table
+          columns:
+            - column:
+                name:  id
+                type:  int
+                autoIncrement:  true
+                constraints:
+                  primaryKey:  true
+                  nullable:  false
+            - column:
+                name:  test_column
+                type:  int
+                constraints:
+                  nullable:  false
