@@ -13,8 +13,6 @@ public class PlayerMapperImpl implements PlayerMapper {
         return PlayerE.builder()
                 .id(player.getId())
                 .name(player.getName())
-                .address1(player.getAddress1())
-                .address2(player.getAddress2())
                 .build();
 
     }
@@ -24,8 +22,6 @@ public class PlayerMapperImpl implements PlayerMapper {
         return Player.builder()
                 .id(playerE.getId())
                 .name(playerE.getName())
-                .address1(playerE.getAddress1())
-                .address2(playerE.getAddress2())
                 .build();
     }
 

@@ -26,11 +26,5 @@ public class PlayerE {
     private Integer id;
     @Column(name = "NAME")
     private String name;
-    @Column(name = "ADDRESS1")
-    private String address1;
-    @Column(name = "ADDRESS2")
-    private String address2;
-    @Column(name = "CITY")
-    private String city;
 
 }

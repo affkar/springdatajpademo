@@ -3,10 +3,10 @@ spring:
     name: springbatchdemo
   datasource:
     hikari:
-      jdbc-url: jdbc:h2:file:~/test
+      jdbc-url: jdbc:h2:file:./target/db/test
       driver-class-name: org.h2.Driver
       username: sa
-      password: password
+      password:
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
   h2:

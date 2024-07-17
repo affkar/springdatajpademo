@@ -9,8 +9,5 @@ public class Player {
 
     private int id;
     private String name;
-    private String address1;
-    private String address2;
-    private String city;
 
 }
