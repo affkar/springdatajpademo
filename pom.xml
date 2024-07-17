@@ -9,10 +9,10 @@
 		<!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>springbatchdemo</artifactId>
+	<artifactId>spring-data-jpa-demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>springbatchdemo</name>
-	<description>Demo project for Spring Boot</description>
+	<name>spring-data-jpa-demo</name>
+	<description>A Project with 1. A configured local H2 Database 2. Liquibase Setup to create tables in the database 3. Spring Data JPA- Hibernate with a few entities and repository, 4. Spring Web - A Rest controller to be able to save objects using the repository.</description>
 	<url />
 	<licenses>
 		<license />
