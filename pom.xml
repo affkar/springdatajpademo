@@ -179,6 +179,10 @@
 					<skipTests>false</skipTests>
 					<testFailureIgnore>true</testFailureIgnore>
 					<forkCount>0</forkCount>
+					<includes>
+						<include>*MockMvc</include>
+						<include>*Test</include>
+					</includes>
 				</configuration>
 			</plugin>
 
@@ -187,10 +191,28 @@
 				<artifactId>maven-failsafe-plugin</artifactId>
 				<executions>
 					<execution>
+						<id>datajpatests</id>
 						<goals>
 							<goal>integration-test</goal>
 							<goal>verify</goal>
 						</goals>
+						<configuration>
+							<includes>
+								<include>*DataJpa</include>
+							</includes>
+						</configuration>
+					</execution>
+					<execution>
+						<id>it</id>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+						<configuration>
+							<includes>
+								<include>*IT</include>
+							</includes>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
