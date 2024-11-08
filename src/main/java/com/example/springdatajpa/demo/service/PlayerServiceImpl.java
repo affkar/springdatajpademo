@@ -1,13 +1,13 @@
-package com.example.springbatchdemo.service;
+package com.example.springdatajpa.demo.service;
 
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.example.springbatchdemo.entity.PlayerE;
-import com.example.springbatchdemo.mapper.PlayerMapper;
-import com.example.springbatchdemo.model.Player;
-import com.example.springbatchdemo.repository.PlayerRepository;
+import com.example.springdatajpa.demo.entity.PlayerE;
+import com.example.springdatajpa.demo.mapper.PlayerMapper;
+import com.example.springdatajpa.demo.model.Player;
+import com.example.springdatajpa.demo.repository.PlayerRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,7 +21,7 @@ public class PlayerServiceImpl implements PlayerService {
     @Override
     public Player getPlayerById(int playerId) {
         return playerRepository.findById(playerId).map(playerE -> playerMapper.map(playerE))
-                .orElseThrow(() -> new IllegalArgumentException("No Such Player with Id: " + playerId));
+                .orElseThrow(() -> new DataNotFoundException("No Such Player with Id: " + playerId));
     }
 
     @Override

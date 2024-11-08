@@ -1,6 +1,6 @@
-package com.example.springbatchdemo.service;
+package com.example.springdatajpa.demo.service;
 
-import com.example.springbatchdemo.model.Player;
+import com.example.springdatajpa.demo.model.Player;
 
 public interface PlayerService {
 

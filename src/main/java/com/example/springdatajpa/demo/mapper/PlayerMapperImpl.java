@@ -1,9 +1,9 @@
-package com.example.springbatchdemo.mapper;
+package com.example.springdatajpa.demo.mapper;
 
 import org.springframework.stereotype.Service;
 
-import com.example.springbatchdemo.entity.PlayerE;
-import com.example.springbatchdemo.model.Player;
+import com.example.springdatajpa.demo.entity.PlayerE;
+import com.example.springdatajpa.demo.model.Player;
 
 @Service
 public class PlayerMapperImpl implements PlayerMapper {

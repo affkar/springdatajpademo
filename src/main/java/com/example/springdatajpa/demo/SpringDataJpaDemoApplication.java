@@ -1,4 +1,4 @@
-package com.example.springbatchdemo;
+package com.example.springdatajpa.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,10 @@ import org.springframework.cache.annotation.EnableCaching;
 
 @SpringBootApplication
 @EnableCaching
-public class SpringbatchdemoApplication {
+public class SpringDataJpaDemoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringbatchdemoApplication.class, args);
+		SpringApplication.run(SpringDataJpaDemoApplication.class, args);
 	}
 
 }

@@ -1,10 +1,10 @@
-package com.example.springbatchdemo;
+package com.example.springdatajpa.demo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringbatchdemoApplicationTests {
+class SpringDataJpaDemoApplicationIT {
 
 	@Test
 	void contextLoads() {

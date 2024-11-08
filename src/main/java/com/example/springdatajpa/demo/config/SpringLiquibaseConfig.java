@@ -1,4 +1,4 @@
-package com.example.springbatchdemo.config;
+package com.example.springdatajpa.demo.config;
 
 import org.springframework.context.annotation.Configuration;
 

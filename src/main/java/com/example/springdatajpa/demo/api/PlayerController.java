@@ -1,4 +1,4 @@
-package com.example.springbatchdemo.api;
+package com.example.springdatajpa.demo.api;
 
 import java.time.Instant;
 import java.util.List;
@@ -8,9 +8,9 @@ import java.util.stream.IntStream;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.springbatchdemo.model.Player;
-import com.example.springbatchdemo.model.PlayerPages;
-import com.example.springbatchdemo.service.PlayerService;
+import com.example.springdatajpa.demo.model.Player;
+import com.example.springdatajpa.demo.model.PlayerPages;
+import com.example.springdatajpa.demo.service.PlayerService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

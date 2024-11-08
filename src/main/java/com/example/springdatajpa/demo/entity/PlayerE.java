@@ -1,4 +1,4 @@
-package com.example.springbatchdemo.entity;
+package com.example.springdatajpa.demo.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
