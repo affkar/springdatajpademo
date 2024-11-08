@@ -5,8 +5,8 @@ import com.example.springdatajpa.demo.model.Player;
 
 public interface PlayerMapper {
 
-    PlayerE map(Player player);
+    PlayerE mapToPlayerE(Player player);
 
-    Player map(PlayerE playerE);
+    Player mapToPlayer(PlayerE playerE);
 
 }

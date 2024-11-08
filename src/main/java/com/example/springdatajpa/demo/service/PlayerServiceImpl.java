@@ -20,15 +20,15 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public Player getPlayerById(int playerId) {
-        return playerRepository.findById(playerId).map(playerE -> playerMapper.map(playerE))
+        return playerRepository.findById(playerId).map(playerE -> playerMapper.mapToPlayer(playerE))
                 .orElseThrow(() -> new DataNotFoundException("No Such Player with Id: " + playerId));
     }
 
     @Override
     public Player savePlayer(Player player) {
-        PlayerE playerE = Optional.of(player).map(p -> playerMapper.map(p)).orElseThrow(
+        PlayerE playerE = Optional.of(player).map(p -> playerMapper.mapToPlayerE(p)).orElseThrow(
                 () -> new IllegalArgumentException("Expected a Person Object as the payload. Didn't find one!"));
-        return Optional.of(playerRepository.save(playerE)).map(pE -> playerMapper.map(pE)).orElseThrow(
+        return Optional.of(playerRepository.save(playerE)).map(pE -> playerMapper.mapToPlayer(pE)).orElseThrow(
                 () -> new IllegalArgumentException("Hibernate Gave me an empty Player Entity when saving"));
     }
 

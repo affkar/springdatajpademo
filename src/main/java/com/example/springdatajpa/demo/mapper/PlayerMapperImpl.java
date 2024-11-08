@@ -9,7 +9,7 @@ import com.example.springdatajpa.demo.model.Player;
 public class PlayerMapperImpl implements PlayerMapper {
 
     @Override
-    public PlayerE map(Player player) {
+    public PlayerE mapToPlayerE(Player player) {
         return PlayerE.builder()
                 .id(player.getId())
                 .name(player.getName())
@@ -18,7 +18,7 @@ public class PlayerMapperImpl implements PlayerMapper {
     }
 
     @Override
-    public Player map(PlayerE playerE) {
+    public Player mapToPlayer(PlayerE playerE) {
         return Player.builder()
                 .id(playerE.getId())
                 .name(playerE.getName())
