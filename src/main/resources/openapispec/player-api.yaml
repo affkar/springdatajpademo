@@ -1,0 +1,106 @@
+openapi: 3.0.3
+info:
+  title: Player API Specification
+  description: |-
+    A simple Player API to get players by Id and to save Players and get an Id
+  version: v0
+servers:
+  - url: https://testenvironment.org/api/
+  - url: https://prodenvironment.org/api/
+tags:
+  - name: player
+    description: Operations on Players
+paths:
+  /player:
+    post:
+      tags:
+      - player
+      operationId: savePlayer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Player"
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Player"
+  /player/{playerId}:
+    get:
+      tags:
+      - player
+      operationId: getPlayer
+      parameters:
+      - name: playerId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Player"
+  /player/pages:
+    get:
+      tags:
+      - player
+      operationId: getPlayers
+      parameters:
+      - name: pageNo
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Player"
+  /player/pages/count/{queryDate}:
+    get:
+      tags:
+      - player
+      operationId: getPlayerPages
+      parameters:
+      - name: queryDate
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date-time
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PlayerPages"
+components:
+  schemas:
+    Player:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+    PlayerPages:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32

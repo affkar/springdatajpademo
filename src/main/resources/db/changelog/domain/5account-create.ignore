@@ -1,0 +1,69 @@
+databaseChangeLog:
+- preConditions:
+    - runningAs:
+        username:  SA
+- changeSet:
+      id:  "account-create"
+      author:  karthick
+      labels: example-label
+      context: example-context
+      comment: example-comment
+      changes:
+       - createTable:
+            tableName:  account
+            columns:
+              - column:
+                  name:  id
+                  type:  int
+                  autoIncrement:  true
+                  constraints:
+                    primaryKey:  true
+                    nullable:  false
+              - column:
+                  name:  customerId
+                  type:  int
+                  constraints:
+                    foreignKeyName: account_customer_FK_account
+                    references: customer(id)
+                    nullable:  false
+- changeSet:
+      id:  "account-characteristic-create"
+      author:  karthick
+      labels: example-label
+      context: example-context
+      comment: example-comment
+      changes:
+        - createTable:
+            tableName:  account_characteristic
+            columns:
+              - column:
+                  name:  id
+                  type:  int
+                  constraints:
+                    nullable:  false
+                    foreignKeyName: account_characteristic_FK_account
+                    references: account(id)
+              - column:
+                  name:  characteristic_id
+                  type:  int
+                  constraints:
+                    nullable:  false
+                    foreignKeyName: account_characteristic_FK_characteristic
+                    references: characteristic(id)
+              - column:
+                  name:  value
+                  type:  float
+                  constraints:
+                    nullable:  false
+- changeSet:
+      id: "account-characteristic-pk-create"
+      author:  karthick
+      labels: example-label
+      context: example-context
+      comment: example-comment
+      changes:
+        - addPrimaryKey:
+            constraintName: account_characteristic_pk
+            tableName: account_characteristic
+            columnNames: id, characteristic_id      
+            

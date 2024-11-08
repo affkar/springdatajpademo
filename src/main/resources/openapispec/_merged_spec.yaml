@@ -1,0 +1,21 @@
+---
+servers:
+- url: "http://localhost:8080"
+openapi: "3.0.3"
+paths:
+  /player/pages:
+    $ref: "./player-api.yaml#/paths/~1player~1pages"
+  /player:
+    $ref: "./player-api.yaml#/paths/~1player"
+  /account/deposit:
+    $ref: "./account_api_description.yaml#/paths/~1account~1deposit"
+  /player/{playerId}:
+    $ref: "./player-api.yaml#/paths/~1player~1{playerId}"
+  /account/{accountId}:
+    $ref: "./account_api_description.yaml#/paths/~1account~1{accountId}"
+  /player/pages/count/{queryDate}:
+    $ref: "./player-api.yaml#/paths/~1player~1pages~1count~1{queryDate}"
+info:
+  title: "merged spec"
+  description: "merged spec"
+  version: "1.0.0"
