@@ -162,7 +162,11 @@
 							<importMappings>
 								<importMapping>Instant=java.time.Instant</importMapping>
 								<importMapping>LocalDate=java.time.LocalDate</importMapping>
+								<importMapping>HttpStatus=org.springframework.http.HttpStatus</importMapping>
 							</importMappings>
+							<schemaMappings>
+								<schemaMapping>HttpStatus=org.springframework.http.HttpStatus</schemaMapping>
+							</schemaMappings>
 						</configuration>
 					</execution>
 				</executions>
