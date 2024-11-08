@@ -10,9 +10,10 @@ import com.example.springdatajpa.demo.model.ExceptionMessage;
 @ControllerAdvice
 public class GlobalExceptionHandler {
     @ExceptionHandler(value = RuntimeException.class)
-    ResponseEntity<ExceptionMessage> handleRuntimeException(RuntimeException re) {
+    ResponseEntity<ExceptionMessage> handleRuntimeException(final RuntimeException re) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).<ExceptionMessage>body(
                 ExceptionMessage.builder().statusCode(HttpStatus.INTERNAL_SERVER_ERROR).errorMessage(re.getMessage())
                         .build());
+
     }
 }

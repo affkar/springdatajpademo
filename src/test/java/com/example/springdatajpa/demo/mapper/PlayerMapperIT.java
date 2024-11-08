@@ -17,19 +17,19 @@ public class PlayerMapperIT {
 
     @Test
     void testMapToPlayer() {
-        int expectedId = 0;
-        String expectedName = "Karthick";
-        PlayerE playerE = PlayerE.builder().id(expectedId).name(expectedName).build();
-        assertThat(testee.mapToPlayer(playerE)).extracting(Player::getId, Player::getName)
+        final int expectedId = 0;
+        final String expectedName = "Karthick";
+        final PlayerE playerE = PlayerE.builder().id(expectedId).name(expectedName).build();
+        assertThat(this.testee.mapToPlayer(playerE)).extracting(Player::getId, Player::getName)
                 .containsExactly(expectedId, expectedName);
     }
 
     @Test
     void testMapToPlayerE() {
-        int expectedId = 0;
-        String expectedName = "Karthick";
-        Player player = Player.builder().id(expectedId).name(expectedName).build();
-        assertThat(testee.mapToPlayerE(player)).extracting(PlayerE::getId, PlayerE::getName)
+        final int expectedId = 0;
+        final String expectedName = "Karthick";
+        final Player player = Player.builder().id(expectedId).name(expectedName).build();
+        assertThat(this.testee.mapToPlayerE(player)).extracting(PlayerE::getId, PlayerE::getName)
                 .containsExactly(expectedId, expectedName);
     }
 }
