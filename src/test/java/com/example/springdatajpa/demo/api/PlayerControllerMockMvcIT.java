@@ -6,14 +6,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.example.springdatajpa.demo.model.Player;
 import com.example.springdatajpa.demo.service.DataNotFoundException;
 import com.example.springdatajpa.demo.service.PlayerService;
 
@@ -26,16 +27,32 @@ public class PlayerControllerMockMvcIT {
     @MockBean
     PlayerService playerService;
 
-    @Test
-    void testGetPlayer() throws Exception {
-        given(playerService.getPlayerById(1)).willThrow(new DataNotFoundException("Could not find player"));
-        MvcResult mvcResult = mockMvc.perform(get(UriComponentsBuilder.fromPath("/api/player/{playerId}").build("1"))
-                .accept(org.springframework.http.MediaType.APPLICATION_JSON))
+    @Nested
 
-                .andExpect(status().isNotFound())
-                .andExpect(jsonPath("$.errorMessage", Matchers.equalTo("Could not find player")))
-                .andExpect(jsonPath("$.statusCode", Matchers.equalTo("NOT_FOUND")))
-                .andReturn();
+    class GetPlayer {
+
+        @Test
+        void Not_found() throws Exception {
+            given(playerService.getPlayerById(1)).willThrow(new DataNotFoundException("Could not find player"));
+            mockMvc.perform(get(UriComponentsBuilder.fromPath("/api/player/{playerId}").build("1"))
+                    .accept(org.springframework.http.MediaType.APPLICATION_JSON))
+
+                    .andExpect(status().isNotFound())
+                    .andExpect(jsonPath("$.errorMessage", Matchers.equalTo("Could not find player")))
+                    .andExpect(jsonPath("$.statusCode", Matchers.equalTo("NOT_FOUND")))
+                    .andReturn();
+        }
+
+        @Test
+        void ok() throws Exception {
+            given(playerService.getPlayerById(1)).willReturn(Player.builder().id(1).name("Alagu").build());
+            mockMvc.perform(get(UriComponentsBuilder.fromPath("/api/player/{playerId}").build("1"))
+                    .accept(org.springframework.http.MediaType.APPLICATION_JSON))
+                    .andExpect(status().isOk())
+                    .andExpect(jsonPath("$.id", Matchers.equalTo(1)))
+                    .andExpect(jsonPath("$.name", Matchers.equalTo("Alagu")))
+                    .andReturn();
+        }
     }
 
     @Test
