@@ -3,7 +3,7 @@ spring:
     name: springbatchdemo
   datasource:
     hikari:
-      jdbc-url: jdbc:h2:file:./target/db/test
+      jdbc-url: jdbc:h2:mem:in-mem-db
       driver-class-name: org.h2.Driver
       username: sa
       password:
