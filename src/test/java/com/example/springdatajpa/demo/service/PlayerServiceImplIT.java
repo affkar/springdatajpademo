@@ -32,15 +32,23 @@ public class PlayerServiceImplIT {
     }
 
     @Test
-    void getPlayerById_404_when_NoSuchPlayerExistsInTheRepoForTheId() {
+    void getPlayerById_DataNotFoundException_when_NoSuchPlayerExistsInTheRepoForTheId() {
         final Throwable actualException = catchThrowable(() -> this.playerService.getPlayerById(0));
         assertThat(actualException).isInstanceOf(DataNotFoundException.class)
                 .hasMessageContaining("No Such Player with Id: 0");
     }
 
     @Test
-    void getPlayerById_200_When_A_PlayerHasBeenSavedAndItExistsInTheRepo() {
-        final Player savedPlayer = this.playerService.savePlayer(Player.builder().name("Karthick").build());
+    void getPlayerById_ReturnsThePlayer_When_A_PlayerHasBeenSavedAndItExistsInTheRepo() {
+        final Player savedPlayer = this.savePlayer_saves_and_returns_the_saved_player();
+        assertThat(this.playerService.getPlayerById(savedPlayer.getId())).extracting(Player::getId, Player::getName)
+                .containsExactly(savedPlayer.getId(), savedPlayer.getName());
+    }
 
+    @Test
+    Player savePlayer_saves_and_returns_the_saved_player() {
+        final Player savedPlayer = this.playerService.savePlayer(Player.builder().name("Karthick").build());
+        assertThat(savedPlayer.getId()).isNotNull();
+        return savedPlayer;
     }
 }
