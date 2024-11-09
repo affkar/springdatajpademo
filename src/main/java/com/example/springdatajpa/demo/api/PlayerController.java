@@ -27,11 +27,13 @@ public class PlayerController implements PlayerApi {
 
     @Override
     public Player getPlayer(final Integer playerId) {
+        log.info("Received GetPlayer - {}", playerId);
         return this.playerService.getPlayerById(playerId);
     }
 
     @Override
     public Player savePlayer(final Player player) {
+        log.info("Received SavePlayer - {}", player.getName());
         return this.playerService.savePlayer(player);
     }
 
