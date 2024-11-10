@@ -1,0 +1,9 @@
+components:
+  schemas:
+    ExceptionMessage:
+      type: object
+      properties:
+        statusCode:
+          type: HttpStatus
+        errorMessage:
+          type: string

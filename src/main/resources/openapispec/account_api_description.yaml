@@ -4,7 +4,7 @@ info:
   description: |-
     A simple banking API that allows two operations:
     - get account balance given account number
-    - deposit amount to a account 
+    - deposit amount to a account
   version: 1.0-SNAPSHOT
 servers:
   - url: https://testenvironment.org/api/
@@ -20,12 +20,12 @@ paths:
       summary: Get account information
       description: Get account information using account number
       operationId: getAccount
-      parameters: 
+      parameters:
         - name: accountId
           in: path
           description: ID of account to return
           required: true
-          schema: 
+          schema:
             type: integer
             format: int64
       responses:
@@ -34,26 +34,26 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Account'
+                $ref: "#/components/schemas/Account"
         404:
           description: Account not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AccountNotFoundError'
+                $ref: "./common_schemas.yaml#/components/schemas/ExceptionMessage"
   /account/deposit:
     post:
       tags:
         - accounts
       summary: Deposit amount to account
-      description: Initiates a deposit operation of a desired amount to the account specified 
+      description: Initiates a deposit operation of a desired amount to the account specified
       operationId: depositToAccount
       requestBody:
         description: Account number and desired amount to deposit
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/DepositRequest'
+              $ref: "#/components/schemas/DepositRequest"
         required: true
       responses:
         204:
@@ -63,12 +63,46 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AccountNotFoundError'
+                $ref: "./common_schemas.yaml#/components/schemas/ExceptionMessage"
+
+  /account/withdraw:
+    post:
+      tags:
+        - accounts
+      summary: Withdraw amount from account
+      description: Initiates a withdraw operation of a desired amount from the account specified
+      operationId: withdrawFromAccount
+      requestBody:
+        description: Account number and desired amount to withdraw
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WithdrawalRequest"
+        required: true
+      responses:
+        204:
+          description: Success
+        403:
+          description: Insufficient funds
+          content:
+            application/json:
+              schema:
+                $ref: "./common_schemas.yaml#/components/schemas/ExceptionMessage"
+        404:
+          description: Account not found
+          content:
+            application/json:
+              schema:
+                $ref: "./common_schemas.yaml#/components/schemas/ExceptionMessage"
 components:
   schemas:
     Account:
       type: object
       properties:
+        name:
+          type: string
+        accountNumber:
+          type: number
         balance:
           type: number
     AccountNotFoundError:
@@ -82,4 +116,13 @@ components:
         accountNumber:
           type: string
         depositAmount:
+          type: number
+    WithdrawalRequest:
+      type: object
+      properties:
+        accountNumber:
+          type: number
+        accountName:
+          type: string
+        withdrawalAmount:
           type: number

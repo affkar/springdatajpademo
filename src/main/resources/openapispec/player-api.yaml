@@ -14,7 +14,7 @@ paths:
   /player:
     post:
       tags:
-      - player
+        - player
       operationId: savePlayer
       requestBody:
         content:
@@ -34,19 +34,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ExceptionMessage"
+                $ref: "./common_schemas.yaml#/components/schemas/ExceptionMessage"
   /player/{playerId}:
     get:
       tags:
-      - player
+        - player
       operationId: getPlayer
       parameters:
-      - name: playerId
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int32
+        - name: playerId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
       responses:
         200:
           description: OK
@@ -59,19 +59,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ExceptionMessage"
+                $ref: "./common_schemas.yaml#/components/schemas/ExceptionMessage"
   /player/pages:
     get:
       tags:
-      - player
+        - player
       operationId: getPlayers
       parameters:
-      - name: pageNo
-        in: query
-        required: true
-        schema:
-          type: integer
-          format: int32
+        - name: pageNo
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
       responses:
         200:
           description: OK
@@ -84,15 +84,15 @@ paths:
   /player/pages/count/{queryDate}:
     get:
       tags:
-      - player
+        - player
       operationId: getPlayerPages
       parameters:
-      - name: queryDate
-        in: path
-        required: true
-        schema:
-          type: string
-          format: date-time
+        - name: queryDate
+          in: path
+          required: true
+          schema:
+            type: string
+            format: date-time
       responses:
         200:
           description: OK
@@ -109,13 +109,6 @@ components:
           type: integer
           format: int32
         name:
-          type: string
-    ExceptionMessage:
-      type: object
-      properties:
-        statusCode:
-          type: HttpStatus
-        errorMessage:
           type: string
     PlayerPages:
       type: object
