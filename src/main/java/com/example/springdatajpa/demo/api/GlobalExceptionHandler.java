@@ -5,15 +5,24 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.example.springdatajpa.demo.model.DataNotFoundException;
 import com.example.springdatajpa.demo.model.ExceptionMessage;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
     @ExceptionHandler(value = RuntimeException.class)
+    @SuppressWarnings("unused")
     ResponseEntity<ExceptionMessage> handleRuntimeException(final RuntimeException re) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).<ExceptionMessage>body(
                 ExceptionMessage.builder().statusCode(HttpStatus.INTERNAL_SERVER_ERROR).errorMessage(re.getMessage())
                         .build());
 
+    }
+
+    @ExceptionHandler(value = DataNotFoundException.class)
+    @SuppressWarnings("unused")
+    ResponseEntity<ExceptionMessage> handleDataNotFoundException(final DataNotFoundException dnfe) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).<ExceptionMessage>body(
+                ExceptionMessage.builder().statusCode(HttpStatus.NOT_FOUND).errorMessage(dnfe.getMessage()).build());
     }
 }

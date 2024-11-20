@@ -11,6 +11,8 @@ paths:
     $ref: "./account_api_description.yaml#/paths/~1account~1deposit"
   /player/{playerId}:
     $ref: "./player-api.yaml#/paths/~1player~1{playerId}"
+  /account/withdraw:
+    $ref: "./account_api_description.yaml#/paths/~1account~1withdraw"
   /account/{accountId}:
     $ref: "./account_api_description.yaml#/paths/~1account~1{accountId}"
   /player/pages/count/{queryDate}:

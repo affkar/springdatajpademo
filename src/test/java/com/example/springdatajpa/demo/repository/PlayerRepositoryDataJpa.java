@@ -3,17 +3,35 @@ package com.example.springdatajpa.demo.repository;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.ComponentScan;
 
 import com.example.springdatajpa.demo.entity.PlayerE;
+import com.example.springdatajpa.demo.testhelpers.TestHelper;
 
 @DataJpaTest
+@ComponentScan("com.example.springdatajpa.demo.testhelpers")
 public class PlayerRepositoryDataJpa {
 
     @Autowired
     PlayerRepository testee;
+
+    @Autowired
+    private TestHelper testHelper;
+
+    @BeforeEach
+    void setup() {
+        this.testHelper.assertCleanSlate();
+    }
+
+    @AfterEach
+    void tearDown() {
+        this.testHelper.cleanupTransactionalData();
+    }
 
     @Test
     void testSave() {
